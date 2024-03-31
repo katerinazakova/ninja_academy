@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class NinjaAcademyForm {
     @Id
     @GeneratedValue()
-    private long id;
+    private Long id;
     private String firstName;
     private String secondName;
     private LocalDate birthDay;

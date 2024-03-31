@@ -4,7 +4,7 @@ CREATE TABLE ninjaAcademyForm
     firstName    VARCHAR(50)                                                                            NOT NULL,
     secondName   VARCHAR(50)                                                                            NOT NULL,
     birthDay     DATE                                                                                   NOT NULL,
-    nameCourse   VARCHAR(20) CHECK ( nameCourse IN ('TAEKWONDO', 'KICKBOX', 'GYMNASTIKA', 'KRAVMAGA') ) NOT NULL,
+    nameCourse   VARCHAR(20) CHECK ( nameCourse IN ('taekwon-do', 'kickbox', 'gymnastika', 'krav maga') ) NOT NULL,
     timeCourse   VARCHAR(20)                                                                            NOT NULL,
     nameParent   VARCHAR(50)                                                                            NOT NULL,
     email        VARCHAR(50)                                                                            NOT NULL,

@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Course {
-    TAEKWONDO ("taekwon-do"), KICKBOX("kickbox"), BOX ("box"), KRAVMAGA ("krav maga");
+    TAEKWONDO ("taekwon-do"), KICKBOX("kickbox"), GYMNASTIKA ("gymnastika"), KRAVMAGA ("krav maga");
 
     private final String title;
 
