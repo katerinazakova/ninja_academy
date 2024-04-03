@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.EnumSet;
 
 @Getter
@@ -27,15 +26,13 @@ public class Cadet {
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = CourseEnum.class)
     private EnumSet<CourseEnum> nameCourse = EnumSet.noneOf(CourseEnum.class);
-    @Enumerated(EnumType.STRING)
-    private DayEnum dayOfCourse;
-    @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime timeOfCourse;
+    private String dateCourse;
     private String nameParent;
     private String email;
     private String phoneNumber;
     private boolean parentEscort;
+
     @ManyToOne
-    private Course course;
+    private Dates date;
 
 }
