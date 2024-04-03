@@ -7,30 +7,35 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.EnumSet;
-import java.util.List;
 
-@Entity
 @Getter
 @Setter
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Course {
+public class Cadet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String firstName;
+    private String secondName;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate birthDay;
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = CourseEnum.class)
-    private EnumSet <CourseEnum> nameCourse = EnumSet.allOf(CourseEnum.class);
-    private String characteristic;
-    private String coach;
+    private EnumSet<CourseEnum> nameCourse = EnumSet.noneOf(CourseEnum.class);
     @Enumerated(EnumType.STRING)
     private DayEnum dayOfCourse;
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime timeOfCourse;
-
-    @OneToMany (mappedBy = "course")
-    private List<Cadet> cadets;
+    private String nameParent;
+    private String email;
+    private String phoneNumber;
+    private boolean parentEscort;
+    @ManyToOne
+    private Course course;
 
 }
