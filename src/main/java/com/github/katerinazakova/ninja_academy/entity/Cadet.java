@@ -24,8 +24,7 @@ public class Cadet {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDay;
     @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = CourseEnum.class)
-    private EnumSet<CourseEnum> nameCourse = EnumSet.noneOf(CourseEnum.class);
+    private CourseEnum nameCourse;
     private String dateCourse;
     private String nameParent;
     private String email;

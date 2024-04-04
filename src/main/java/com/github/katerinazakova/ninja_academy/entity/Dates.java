@@ -20,8 +20,7 @@ public class Dates {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = CourseEnum.class)
-    private EnumSet<CourseEnum> nameCourse = EnumSet.allOf(CourseEnum.class);
+    private CourseEnum nameCourse;
     @Enumerated(EnumType.STRING)
     private DayEnum dayCourse;
     @DateTimeFormat(pattern = "HH:mm")

@@ -19,8 +19,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = CourseEnum.class)
-    private EnumSet<CourseEnum> nameCourse = EnumSet.allOf(CourseEnum.class);
+    private CourseEnum nameCourse;
     private String characteristic;
     private String coach;
 
