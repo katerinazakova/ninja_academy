@@ -14,7 +14,8 @@
         <th>Kurz</th>
         <th>Den</th>
         <th>Čas</th>
-        <th>Věková skupina od</th>
+        <th>Věková kategorie</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -24,7 +25,7 @@
         <th>${termin.dayCourse.title}</th>
         <th>${termin.timeCourseFrom} - ${termin.timeCourseTo}</th>
         <th>${termin.ageFrom} - ${termin.ageTo}</th>
-        <th><a href="">Seznam kadetů</a></th>
+        <th><a href="/termin/${termin.id}">obsazenost kurzu</a></th>
     </tr>
     [/#list]
     </tbody>

@@ -15,12 +15,12 @@ public class CourseController {
 
     @GetMapping("/")
     public ModelAndView modelAndView(){
-        ModelAndView modelAndView = new ModelAndView("/course/index");
-        modelAndView.addObject("seznam", courseService.findAll());
+        ModelAndView modelAndView = new ModelAndView("/index");
+        modelAndView.addObject("kurzy", courseService.findAll());
         return modelAndView;
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("kurz/{id}")
     public ModelAndView modelAndView(@PathVariable int id){
         ModelAndView modelAndView = new ModelAndView("/course/detail");
         modelAndView.addObject("kurz", courseService.findCourseById(id));
