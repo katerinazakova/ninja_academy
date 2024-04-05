@@ -9,6 +9,7 @@
         <li>${kurz.nameCourse.title} <a href="kurz/${kurz.id}">detail</a></li>
     </ul>
 [/#list]
+<a href="/kadet">Registrace na kurz</a>
 
 <img class= "uvodniFotoNinjaTurtles" src="/img/ninja_turtles.jpg" alt="ninja turtles">
 

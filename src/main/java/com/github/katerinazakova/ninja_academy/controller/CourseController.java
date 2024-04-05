@@ -14,14 +14,14 @@ public class CourseController {
 
 
     @GetMapping("/")
-    public ModelAndView modelAndView(){
+    public ModelAndView zobrazKurzy(){
         ModelAndView modelAndView = new ModelAndView("/index");
         modelAndView.addObject("kurzy", courseService.findAll());
         return modelAndView;
     }
 
     @GetMapping("kurz/{id}")
-    public ModelAndView modelAndView(@PathVariable int id){
+    public ModelAndView zobrazDetailKurzu(@PathVariable int id){
         ModelAndView modelAndView = new ModelAndView("/course/detail");
         modelAndView.addObject("kurz", courseService.findCourseById(id));
         modelAndView.addObject("terminy",courseService.getDatesById(id));

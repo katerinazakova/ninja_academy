@@ -13,7 +13,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DatesService {
     private final DatesRepository datesRepository;
-
+    public List<Dates> findAllDates (){
+        return (List<Dates>) datesRepository.findAll();
+    }
     public Dates findDateById (int id){
         return datesRepository.findById(id).get();
     }

@@ -13,7 +13,7 @@ public class DatesController {
     private final DatesService datesService;
 
     @GetMapping("/termin/{id}")
-    public ModelAndView modelAndView(@PathVariable int id) {
+    public ModelAndView zobrazDetailTerminu(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("dates/detail");
         modelAndView.addObject("termin",datesService.findDateById(id));
         modelAndView.addObject("kadeti", datesService.getAllCadetsById(id));
