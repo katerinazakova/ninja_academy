@@ -20,7 +20,7 @@
     <label class="radek" for="birthDay">Datum narození:</label>
     <div class="input">[@spring.formInput path="kadet.birthDay" fieldType = "date" /]</div>
     <div class="error">[@spring.showErrors "<br>" /]</div>
-    <div> Název kurzu:</div>
+    <div> Název a termín kurzu:</div>
     <div class="radio">
 
         <label for="nameCourse1">taekwon-do</label>
@@ -38,29 +38,37 @@
         [@spring.bind "kadet.nameCourse"/]
         <div class="error">[@spring.showErrors "<br>"/]</div>
     </div>
-
-    <div class="form-group">
-        <label for="dateCourse" class="radek">Termín kurzu</label>
-        <div class="input">[@spring.formSingleSelect path="kadet.dateCourse" options={
-            "1": "taekwon-do pondělí 15:00 - 16:00",
-            "2": "taekwon-do pondělí 16:00 - 17:00",
-            "3": "taekwon-do pondělí 17:00 - 18:00",
-            "4":"taekwon-do středa 17:00 - 18:00",
-            "5":"kickbox úterý 16:00 - 17:00",
-            "6": "kickbox úterý 17:00 - 18:00",
-            "7": "kickbox čtvrtek 18:00 - 19:00",
-            "8": "krav maga středa 16:00 - 17:00",
-            "9": "krav maga čtvrtek 17:00 - 18:00",
-            "10": "krav maga pátek 17:00 - 18:00",
-            "11": "gymnastika pátek 15:00 - 16:00",
-            "12": "gymnastika středa 15:00 - 16:00",
-            "13": "gymnastika pátek 16:00 - 17:00",
-            "14": "gymnastika středa 16:00 - 17:00"
-            }
-            /]</div>
-
+    <div class="radio"> den kurzu:
+        <label for="dayCourse1">po</label>
+        <input id="dayCourse1" type="radio" name="dayCourse" value="PO"/>
+        <label for="dayCourse2">út</label>
+        <input id="dayCourse2" type="radio" name="dayCourse" value="ÚT"/>
+        <label for="dayCourse3">st</label>
+        <input id="dayCourse3" type="radio" name="dayCourse" value="ST"/>
+        <label for="dayCourse4">čt</label>
+        <input id="dayCourse4" type="radio" name="dayCourse" value="CT"/>
+        <label for="dayCourse5">pá</label>
+        <input id="dayCourse5" type="radio" name="dayCourse" value="PA"/>
+        [@spring.bind "kadet.dayCourse"/]
+        <div class="error">[@spring.showErrors "<br" /]</div>
     </div>
-    <div class="error">[@spring.showErrors "<br>"/]</div>
+
+    <div class="radio"> začátek kurzu v:
+        <label for="time1">15:00</label>
+        <input id="time1" type="radio" name="startTimeCourse" value="15:00" />
+        <label for="time2">16:00</label>
+        <input id="time2" type="radio" name="startTimeCourse" value="16:00" />
+        <label for="time3">17:00</label>
+        <input id="time3" type="radio" name="startTimeCourse" value="17:00" />
+        <label for="time4">18:00</label>
+        <input id="time4" type="radio" name="startTimeCourse" value="18:00" />
+
+        [@spring.bind "kadet.startTimeCourse"/]
+        <div class="error">[@spring.showErrors "<br" /]</div>
+    </div>
+
+
+
 
     <label class="row" for="nameParent">Jméno rodiče:</label>
     <div class="input">[@spring.formInput path="kadet.nameParent" /]</div>

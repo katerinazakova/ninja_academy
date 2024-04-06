@@ -18,19 +18,13 @@ public class CadetService {
     private final CadetRepository cadetRepository;
     private final DatesRepository datesRepository;
 
-    public List<Cadet> findAllCadets (){
-        return (List<Cadet>) cadetRepository.findAll();
-    }
-
-    public Cadet findCadetById(int id){
-        return cadetRepository.findById(id).get();
-    }
 
     public Cadet saveNewCadet (Cadet form){
-        int formAge = calculateAge(form);
-        List<Dates> listDates = datesRepository.findByNameCourse(form.getNameCourse());
+
+        List<Dates> listDates = datesRepository.findByNameCourseAndDayCourseAndTimeCourseFrom(form.getNameCourse(), form.getDayCourse(),form.getStartTimeCourse());
+
         for(Dates selectedDate : listDates){
-            if(formAge >= selectedDate.getAgeFrom() && formAge <= selectedDate.getAgeTo()){
+            if(form.getDayCourse()==selectedDate.getDayCourse()){
                 form.setDate(selectedDate);
                 return cadetRepository.save(form);
             }

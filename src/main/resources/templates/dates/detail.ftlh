@@ -13,10 +13,14 @@
     </tr>
     </thead>
     <tbody>
+
     [#list kadeti as kadet]
+        <tr>
         <td>${kadet.firstName}</td>
         <td>${kadet.secondName}</td>
+        </tr>
     [/#list]
+
     </tbody>
 </table>
 
