@@ -30,7 +30,7 @@
         <input id="nameCourse2" type="radio" name="nameCourse" value="KICKBOX">
 
         <label for="nameCourse3">gymnastika</label>
-        <input id="nameCourse3" type = "radio" name="nameCourse" value="GYMNASTIKA">
+        <input id="nameCourse3" type="radio" name="nameCourse" value="GYMNASTIKA">
 
         <label for="nameCourse4">krav maga</label>
         <input id="nameCourse4" type="radio" name="nameCourse" value="KRAVMAGA">
@@ -44,8 +44,21 @@
         <div class="input">[@spring.formSingleSelect path="kadet.dateCourse" options={
             "1": "taekwon-do pondělí 15:00 - 16:00",
             "2": "taekwon-do pondělí 16:00 - 17:00",
-            "3": "kickbox úterý 16:00 - 17:00"
-            } /]</div>
+            "3": "taekwon-do pondělí 17:00 - 18:00",
+            "4":"taekwon-do středa 17:00 - 18:00",
+            "5":"kickbox úterý 16:00 - 17:00",
+            "6": "kickbox úterý 17:00 - 18:00",
+            "7": "kickbox čtvrtek 18:00 - 19:00",
+            "8": "krav maga středa 16:00 - 17:00",
+            "9": "krav maga čtvrtek 17:00 - 18:00",
+            "10": "krav maga pátek 17:00 - 18:00",
+            "11": "gymnastika pátek 15:00 - 16:00",
+            "12": "gymnastika středa 15:00 - 16:00",
+            "13": "gymnastika pátek 16:00 - 17:00",
+            "14": "gymnastika středa 16:00 - 17:00"
+            }
+            /]</div>
+
     </div>
     <div class="error">[@spring.showErrors "<br>"/]</div>
 

@@ -29,7 +29,7 @@ public class CadetController {
         return "cadet/form";
     }
     cadetService.saveNewCadet(form);
-    return "redirect:/";
+    return "cadet/recap";
     }
 
 
