@@ -18,7 +18,7 @@ public class CadetService {
     private final CadetRepository cadetRepository;
     private final DatesRepository datesRepository;
 
-    public List<Cadet> findAll (){
+    public List<Cadet> findAllCadets (){
         return (List<Cadet>) cadetRepository.findAll();
     }
 
@@ -30,7 +30,7 @@ public class CadetService {
         int formAge = calculateAge(form);
         List<Dates> listDates = datesRepository.findByNameCourse(form.getNameCourse());
         for(Dates selectedDate : listDates){
-            if(formAge >= selectedDate.getAgeFrom() || formAge <= selectedDate.getAgeTo()){
+            if(formAge >= selectedDate.getAgeFrom() && formAge <= selectedDate.getAgeTo()){
                 form.setDate(selectedDate);
                 return cadetRepository.save(form);
             }
