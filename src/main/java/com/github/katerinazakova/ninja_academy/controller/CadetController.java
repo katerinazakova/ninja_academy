@@ -24,8 +24,18 @@ public class CadetController {
     }
 
     @PostMapping("/kadet")
-    public String formular (@Valid @ModelAttribute ("kadet") Cadet form, BindingResult bindingResult){
+    public String ulozFormular (@Valid @ModelAttribute ("kadet") Cadet form, BindingResult bindingResult){
     if(bindingResult.hasErrors()){
+        return "cadet/form";
+    }
+
+    int age = cadetService.calculateAge(form);
+    if (age < 3 || age > 15){
+         bindingResult.rejectValue("birthDay", "dateError", "Akademie je pro děti od 3 do 15 let.");
+    return "cadet/form";
+    }
+    if(age<7 && !form.isParentEscort()){
+        bindingResult.rejectValue("parentEscort","ageError", "Dítě do šesti let věku musí odcházet v doprovodu rodičů.");
         return "cadet/form";
     }
     cadetService.saveNewCadet(form);
