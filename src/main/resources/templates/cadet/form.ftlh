@@ -5,7 +5,7 @@
 [#include "../_common/header.ftlh"]
 <body>
 <h1>Ninja Akademie pro děti</h1>
-<h2>Seznam kurzů</h2>
+<h2>Registrace na kurz</h2>
 
 <form class="formular" method="post" action="/kadet">
 
@@ -66,9 +66,6 @@
         [@spring.bind "kadet.startTimeCourse"/]
         <div class="error">[@spring.showErrors "<br" /]</div>
     </div>
-
-
-
 
     <label class="row" for="nameParent">Jméno rodiče:</label>
     <div class="input">[@spring.formInput path="kadet.nameParent" /]</div>
