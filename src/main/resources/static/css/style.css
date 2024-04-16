@@ -1,8 +1,8 @@
-body{
+body {
     font-weight: normal;
     padding: 3% 10%;
 }
-h1{
+h1 {
     text-align: center;
 }
 
@@ -10,7 +10,13 @@ img {
     width: 35%;
     margin: 0 30%;
 }
-
+h2 {
+    padding-top: 4%;
+}
+h4 {
+    padding-top: 4%;
+    text-align: center;
+}
 menu {
     text-align: center;
 }
@@ -18,8 +24,9 @@ menu a {
     display: inline-block;
     margin-right: 5%;
 }
-.paticka {
+footer {
     text-align: center;
-    color: darkgreen;
-    font-style: oblique;
+}
+.tabulka_radek{
+    text-align: center;
 }
