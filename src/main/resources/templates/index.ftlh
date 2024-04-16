@@ -4,14 +4,16 @@
 [#include "_common/header.ftlh"]
 <body>
 <h1>Ninja Akademie pro děti</h1>
+<menu>
 [#list kurzy as kurz]
-    <ul>
-        <li>${kurz.nameCourse.title} <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="kurz/${kurz.id}"> <strong>detail</strong></a></li>
-    </ul>
+    <a class="btn btn-outline-success" href="kurz/${kurz.id}">${kurz.nameCourse.title} </a>
 [/#list]
-<a href="/kadet"><button type="button" class="btn btn-success">Registrace na kurz</button></a>
+</menu>
 
 <img src="/img/ninja_turtles.jpg" alt="ninja_turtles">
-
+<hr>
+<footer class="paticka">
+    @2024 ninja academy
+</footer>
 </body>
 </html>
