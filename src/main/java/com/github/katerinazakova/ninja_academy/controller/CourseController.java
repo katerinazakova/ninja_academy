@@ -1,6 +1,7 @@
 package com.github.katerinazakova.ninja_academy.controller;
 
 import com.github.katerinazakova.ninja_academy.service.CourseService;
+import com.github.katerinazakova.ninja_academy.service.DatesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CourseController {
     private final CourseService courseService;
-
 
     @GetMapping("/")
     public ModelAndView zobrazKurzy(){

@@ -31,10 +31,10 @@ public class Cadet {
     private String secondName;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDay;
-    @NotNull
+
     @Enumerated(EnumType.STRING)
     private CourseEnum nameCourse;
-    @NotNull
+
     @Enumerated(EnumType.STRING)
     private DayEnum dayCourse;
     @DateTimeFormat(pattern = "HH:mm")

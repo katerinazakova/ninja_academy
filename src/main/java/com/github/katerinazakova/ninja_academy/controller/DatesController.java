@@ -12,8 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class DatesController {
     private final DatesService datesService;
 
-    @GetMapping("/termin/{id}")
-    public ModelAndView zobrazDetailTerminu(@PathVariable int id) {
+    @GetMapping("/obsazenost/{id}")
+    public ModelAndView zobrazObsazenostTerminu(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("dates/detail");
         modelAndView.addObject("termin",datesService.findDateById(id));
         modelAndView.addObject("kadeti", datesService.getAllCadetsById(id));

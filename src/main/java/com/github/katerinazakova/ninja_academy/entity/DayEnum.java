@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum DayEnum {
-    PO ("Po"), UT ("Út"), ST("St"), CT ("Čt"), PA("Pá"), SO("So"), NE ("Ne");
+    PO ("po"), UT ("út"), ST("st"), CT ("čt"), PA("pá"), SO("so"), NE ("ne");
 
     private final String title;
 

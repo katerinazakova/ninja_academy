@@ -18,20 +18,11 @@ public class CadetService {
     private final CadetRepository cadetRepository;
     private final DatesRepository datesRepository;
 
-
-    public Cadet saveNewCadet (Cadet form){
-
-        List<Dates> listDates = datesRepository.findByNameCourseAndDayCourseAndTimeCourseFrom(form.getNameCourse(), form.getDayCourse(),form.getStartTimeCourse());
-
-        for(Dates selectedDate : listDates){
-            if(form.getDayCourse()==selectedDate.getDayCourse()){
-                form.setDate(selectedDate);
-                return cadetRepository.save(form);
-            }
-        }
-        throw new IllegalStateException("Nelze najít vhodný termín pro zadaný věk a název kurzu.");
+public Cadet saveNewCadet (Cadet form, int id){
+    Optional <Dates> dateId = datesRepository.findById(id);
+    dateId.ifPresent(form::setDate);
+    return cadetRepository.save(form);
     }
-
 
     public int calculateAge(Cadet form){
         Period period = form.getBirthDay().until(LocalDate.now());
