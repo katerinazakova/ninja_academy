@@ -3,9 +3,10 @@ package com.github.katerinazakova.ninja_academy.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,18 +18,18 @@ import java.time.LocalTime;
 @Setter
 @Getter
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 public class Cadet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotBlank
-    @Pattern(regexp= "^\\p{IsLatin}+$", message = "Musí obsahovat pouze písmena!")
+    @Pattern(regexp = "^\\p{IsLatin}+$", message = "Musí obsahovat pouze písmena!")
     private String firstName;
     @NotBlank
     @Pattern(regexp = "^\\p{IsLatin}+$", message = "Musí obsahovat pouze písmena!")
     private String secondName;
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDay;
 
@@ -46,7 +47,7 @@ public class Cadet {
     @Email
     private String email;
     @NotBlank
-    @Pattern(regexp = "^\\+?[0-9]+$", message = "Musí obsahovat pouze čísla nebo znak + pro mezinárodní předvolbu!" )
+    @Pattern(regexp = "^\\+?[0-9]+$", message = "Musí obsahovat pouze čísla nebo znak + pro mezinárodní předvolbu!")
     private String phoneNumber;
     private boolean parentEscort;
 

@@ -7,7 +7,7 @@
 <h1>Ninja Akademie pro děti</h1>
 <h2>Registrace na kurz</h2>
 
-<form method="post">
+<form class = "form" method="post">
 
     <label class="radek" for="firstName">Jméno:</label>
     <div class="input">[@spring.formInput path="kadet.firstName" /]</div>
@@ -31,6 +31,7 @@
 
     <label for="startTimeCourse" class="radek">Začátek kurzu v:</label>
     <input class="input" id="startTimeCourse" name="startTimeCourse" type="time" value="${termin.timeCourseFrom}" readonly="readonly"/>
+
     </div>
 
     <label class="row" for="nameParent">Jméno rodiče:</label>

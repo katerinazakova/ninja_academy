@@ -15,8 +15,9 @@ public class DatesController {
     @GetMapping("/obsazenost/{id}")
     public ModelAndView zobrazObsazenostTerminu(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("dates/detail");
-        modelAndView.addObject("termin",datesService.findDateById(id));
+        modelAndView.addObject("termin", datesService.findDateById(id));
         modelAndView.addObject("kadeti", datesService.getAllCadetsById(id));
         return modelAndView;
     }
+
 }

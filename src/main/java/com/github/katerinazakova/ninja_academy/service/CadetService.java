@@ -16,15 +16,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CadetService {
     private final CadetRepository cadetRepository;
-    private final DatesRepository datesRepository;
 
-public Cadet saveNewCadet (Cadet form, int id){
-    Optional <Dates> dateId = datesRepository.findById(id);
-    dateId.ifPresent(form::setDate);
-    return cadetRepository.save(form);
+    public Cadet saveNewCadet(Cadet form) {
+        form.setId(null);
+        return cadetRepository.save(form);
     }
 
-    public int calculateAge(Cadet form){
+    public int calculateAge(Cadet form) {
         Period period = form.getBirthDay().until(LocalDate.now());
         return period.getYears();
     }

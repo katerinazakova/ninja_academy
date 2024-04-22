@@ -7,7 +7,7 @@
 <h1>Ninja Akademie pro děti</h1>
 <h2>Seznam kurzů</h2>
 
-<form class="formular" method="post" action="/kadet">
+<form class="formular" method="post" action="/kadet/${kadet.date.id}">
 
     <label class="radek" for="firstName">Jméno:</label>
     <input id="firstName" name="firstName" type="text" value="${kadet.firstName}" readonly="readonly"/>

@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 @RequiredArgsConstructor
 @Controller
 public class CadetController {
     private final CadetService cadetService;
     private final DatesService datesService;
-
 
     @GetMapping("/termin/{id}")
     public ModelAndView zobrazPrazdnyFormular(@PathVariable int id) {
@@ -28,21 +28,27 @@ public class CadetController {
     }
 
     @PostMapping("/termin/{id}")
-    public Object ulozFormular(@ModelAttribute("kadet") @Valid Cadet form, @PathVariable int id, BindingResult bindingResult) {
+    public Object ulozKadeta(@PathVariable int id, @Valid @ModelAttribute("kadet") Cadet form, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView("cadet/form");
+        modelAndView.addObject("termin", datesService.findDateById(id));
         if (bindingResult.hasErrors()) {
-            return "cadet/form";
+            return modelAndView;
         }
         int age = cadetService.calculateAge(form);
-        if (age < 3 || age > 15) {
-            bindingResult.rejectValue("birthDay", "dateError", "Akademie je pro děti od 3 do 15 let.");
-            return "cadet/form";
+
+        if (age < datesService.findDateById(id).getAgeFrom() || age > datesService.findDateById(id).getAgeTo()) {
+            bindingResult.rejectValue("birthDay", "birthdateError", "Dítě neodpovídá věkové kategorii.");
+            return modelAndView;
         }
         if (age < 7 && !form.isParentEscort()) {
             bindingResult.rejectValue("parentEscort", "ageError", "Dítě do šesti let věku musí odcházet v doprovodu rodičů.");
-            return "cadet/form";
+            return modelAndView;
         }
-        cadetService.saveNewCadet(form, id);
-        return "redirect:/";
+
+        form.setDate(datesService.findDateById(id));
+        cadetService.saveNewCadet(form);
+        return "redirect:/obsazenost/{id}";
+
     }
 
 }
