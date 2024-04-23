@@ -1,16 +1,13 @@
 package com.github.katerinazakova.ninja_academy.service;
 
 import com.github.katerinazakova.ninja_academy.entity.Cadet;
-import com.github.katerinazakova.ninja_academy.entity.Dates;
 import com.github.katerinazakova.ninja_academy.repository.CadetRepository;
-import com.github.katerinazakova.ninja_academy.repository.DatesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +22,25 @@ public class CadetService {
     public int calculateAge(Cadet form) {
         Period period = form.getBirthDay().until(LocalDate.now());
         return period.getYears();
+    }
+
+
+    public boolean isParentEscortRequired(Cadet form, BindingResult bindingResult) {
+       int age = calculateAge(form);
+        if (age < 7 && !form.isParentEscort()) {
+            bindingResult.rejectValue("parentEscort", "errorParentEscort", "Dítě do 6 let musí mít zajištěno při odchodu z kurzu doprovod.");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isKidOutOfAgeCategory(Cadet form, int from, int to, BindingResult bindingResult) {
+        int age = calculateAge(form);
+        if (age < from || age > to) {
+            bindingResult.rejectValue("birthDay", "errorBirthday", "Dítě je mimo věkovou kategorii.");
+            return true;
+        }
+        return false;
     }
 
 }

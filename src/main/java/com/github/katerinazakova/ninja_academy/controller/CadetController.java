@@ -1,6 +1,7 @@
 package com.github.katerinazakova.ninja_academy.controller;
 
 import com.github.katerinazakova.ninja_academy.entity.Cadet;
+import com.github.katerinazakova.ninja_academy.entity.Dates;
 import com.github.katerinazakova.ninja_academy.service.CadetService;
 import com.github.katerinazakova.ninja_academy.service.DatesService;
 import jakarta.validation.Valid;
@@ -30,25 +31,24 @@ public class CadetController {
     @PostMapping("/termin/{id}")
     public Object ulozKadeta(@PathVariable int id, @Valid @ModelAttribute("kadet") Cadet form, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("cadet/form");
-        modelAndView.addObject("termin", datesService.findDateById(id));
+        Dates dateOfCadetById = datesService.findDateById(id);
+        modelAndView.addObject("termin", dateOfCadetById);
+
+        int from = dateOfCadetById.getAgeFrom();
+        int to = dateOfCadetById.getAgeTo();
+
         if (bindingResult.hasErrors()) {
             return modelAndView;
         }
-        int age = cadetService.calculateAge(form);
 
-        if (age < datesService.findDateById(id).getAgeFrom() || age > datesService.findDateById(id).getAgeTo()) {
-            bindingResult.rejectValue("birthDay", "birthdateError", "Dítě neodpovídá věkové kategorii.");
-            return modelAndView;
-        }
-        if (age < 7 && !form.isParentEscort()) {
-            bindingResult.rejectValue("parentEscort", "ageError", "Dítě do šesti let věku musí odcházet v doprovodu rodičů.");
+        if (cadetService.isKidOutOfAgeCategory(form, from, to, bindingResult)
+                || cadetService.isParentEscortRequired(form, bindingResult)) {
             return modelAndView;
         }
 
-        form.setDate(datesService.findDateById(id));
+        form.setDate(dateOfCadetById);
         cadetService.saveNewCadet(form);
         return "redirect:/obsazenost/{id}";
-
     }
 
 }

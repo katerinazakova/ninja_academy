@@ -23,13 +23,12 @@ public class CourseService {
     public Course findCourseById(int id) {
 
         return courseRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     public List<Dates> getDatesById(int id) {
         return courseRepository.findById(id)
-                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND)).getDates();
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)).getDates();
     }
-
 
 }
