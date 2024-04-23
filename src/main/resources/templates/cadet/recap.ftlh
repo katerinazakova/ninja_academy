@@ -5,41 +5,57 @@
 [#include "../_common/header.ftlh"]
 <body>
 <h1>Ninja Akademie pro děti</h1>
-<h2>Seznam kurzů</h2>
+<h2>Rekapitulace přihlášky</h2>
 
-<form class="formular" method="post" action="/kadet/${kadet.date.id}">
+<form class="formular" method="post">
 
-    <label class="radek" for="firstName">Jméno:</label>
-    <input id="firstName" name="firstName" type="text" value="${kadet.firstName}" readonly="readonly"/>
+    <table class="table table-bordered border-success" >
+        <tbody>
+        <tr>
+            <th>Jméno:</th>
+            <td>${kadet.firstName}</td>
+        </tr>
+        <tr>
+            <th>Příjmení:</th>
+            <td>${kadet.secondName}</td>
+        </tr>
+        <tr>
+            <th>Datum narození:</th>
+            <td>${kadet.birthDay}</td>
+        </tr>
 
-    <label for="secondName" class="radek">Příjmení:</label>
-    <input id="secondName" name="secondName" type="text" value="${kadet.secondName}" readonly="readonly"/>
+        <tr>
+            <th>Název a termín kurzu:</th>
+            <td>${kadet.nameCourse} dne ${kadet.dayCourse} v ${kadet.startTimeCourse} hod</td>
+        </tr>
+        <tr>
+            <th>Jméno rodiče:</th>
+            <td>${kadet.nameParent}</td>
+        </tr>
 
-    <label class="radek" for="birthDay">Datum narození:</label>
-    <input id="birthDay" name="birthDay" type="date" value="${kadet.birthDay}" readonly="readonly"/>
-    <div> Název a termín kurzu:</div>
-    <div class="form-group">
-        <div class="skupina"><label>${kadet.nameCourse}${kadet.dayCourse}${kadet.startTimeCourse}</label></div>
-    </div>
-    
-    <label class="row" for="nameParent">Jméno rodiče:</label>
-    <input id="nameParent" name="nameParent" type="text" value="${kadet.nameParent}" readonly="readonly"/>
+        <tr>
+            <th>E-mail:</th>
+            <td>${kadet.email}</td>
+        </tr>
 
-    <label class="row" for="email">E-mail:</label>
-    <input id="email" name="email" type="email" value="${kadet.email}" readonly="readonly"/>
+        <tr>
+            <th>Telefon:</th>
+            <td>${kadet.phoneNumber}</td>
+        </tr>
 
-    <label class="row" for="phoneNumber">Telefon:</label>
-    <input id="phoneNumber" name="phoneNumber" type="tel" value="${kadet.phoneNumber}" readonly="readonly"/>
+        <tr>
+            <th>Doprovod rodiče:</th>
+            <td> [#if kadet.parentEscort]
+                    Ano
+                [#else]
+                    Ne
+                [/#if]</td>
+        </tr>
 
-<div>Doprovod rodičů po zkončení kurzu:
-    [#if kadet.parentEscort]
-        <p>Ano</p>
-    [#else]
-        <p>Ne</p>
-    [/#if]
-</div>
-
+        </tbody>
+    </table>
 </form>
+
 
 </body>
 </html>

@@ -48,7 +48,7 @@ public class CadetController {
 
         form.setDate(dateOfCadetById);
         cadetService.saveNewCadet(form);
-        return "redirect:/obsazenost/{id}";
+        return "cadet/recap";
     }
 
 }
