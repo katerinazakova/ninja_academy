@@ -4,6 +4,8 @@ import com.github.katerinazakova.ninja_academy.entity.Cadet;
 import com.github.katerinazakova.ninja_academy.entity.Dates;
 import com.github.katerinazakova.ninja_academy.repository.CadetRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -11,14 +13,25 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
 public class CadetService {
+    private final Logger logger = LoggerFactory.getLogger(CadetService.class);
     private final CadetRepository cadetRepository;
 
     public Cadet findCadetById(int id) {
-        return cadetRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Optional<Cadet> cadet = cadetRepository.findById(id);
+
+        if(cadet.isPresent()){
+            return cadet.get();
+        } else {
+            logger.warn("Kadet s id{} nebyl nalezen", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     public Cadet saveCadetChanges(Cadet cadet) {

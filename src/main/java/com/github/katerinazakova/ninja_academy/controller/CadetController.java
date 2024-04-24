@@ -33,7 +33,6 @@ public class CadetController {
         ModelAndView modelAndView = new ModelAndView("cadet/form");
         Dates dateOfCadetById = datesService.findDateById(id);
         modelAndView.addObject("termin", dateOfCadetById);
-
         if (cadetService.processRegistration(form, dateOfCadetById, bindingResult)) {
             return modelAndView;
         }

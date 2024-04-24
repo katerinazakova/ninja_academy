@@ -9,16 +9,14 @@
 <form class="cadet" method="post">
     <h2>Registrace na kurz</h2>
     <div class="row">
-        <div class="col">
-            <label class="form-label" for="firstName">Jméno:</label>
-            <div>[@spring.formInput path="kadet.firstName"/]</div>
-            <div class="error">[@spring.showErrors "<br>"/]</div>
-        </div>
+        <label class="form-label" for="firstName">Jméno:</label>
+        <div>[@spring.formInput path="kadet.firstName"/]</div>
+        <div class="error">[@spring.showErrors "<br>"/]</div>
     </div>
 
 
     <div class="row">
-        <label class="form-label" for="secondName" class="radek">Příjmení:</label>
+        <label class="form-label" for="secondName">Příjmení:</label>
         <div>[@spring.formInput path = "kadet.secondName" /]</div>
         <div class="error">[@spring.showErrors "<br>" /]</div>
     </div>
@@ -29,10 +27,22 @@
         <div class="error">[@spring.showErrors "<br>" /]</div>
     </div>
 
-    <div class="kurz">
-        <label class="form-label">Zvolený kurz: </label> <strong>${termin.nameCourse} ${termin.dayCourse} ${termin.timeCourseFrom}</strong>
+    <div class="row">
+        <div class="col">
+            <label for="nameCourse" class="form-label">Zvolený kurz:</label>
+            <input class="input" id="nameCourse" name="nameCourse" value="${termin.nameCourse}" readonly="readonly"/>
+        </div>
+        <div class="col">
+            <label for="dayCourse" class="form-label">Den kurzu:</label>
+            <input class="input" id="dayCourse" name="dayCourse" value="${termin.dayCourse}" readonly="readonly"/>
+        </div>
+        <div class="col">
+            <label for="startTimeCourse" class="form-label">Začátek kurzu v:</label>
+            <input class="input" id="startTimeCourse" name="startTimeCourse" type="time"
+                   value="${termin.timeCourseFrom}"
+                   readonly="readonly"/>
+        </div>
     </div>
-
 
     <div class="row">
         <label class="form-label" for="nameParent">Jméno rodiče:</label>
@@ -57,6 +67,7 @@
         <div class="doprovod">[@spring.formCheckbox path="kadet.parentEscort" /]</div>
         <div class="error">[@spring.showErrors "<br>" /]</div>
     </div>
+
     <button type="submit" class="btn btn-primary odeslat">odeslat</button>
 </form>
 
