@@ -37,3 +37,26 @@ footer {
 .deleteH3 {
     text-align: center;
 }
+.cadet{
+    border-radius: 1%;
+    line-height: 2;
+    border: 2px solid black;
+    padding: 0 5% 5% 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.odeslat {
+    margin-top: 10%;
+}
+.row input {
+    width: 350px;
+}
+
+.kurz {
+    margin-top: 5%;
+    background-color: lightgray;
+    border-radius: 4%;
+    width: 350px;
+    padding-left: 4%;
+}

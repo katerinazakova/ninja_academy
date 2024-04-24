@@ -7,7 +7,7 @@
 <h1>Ninja Akademie pro děti</h1>
 <h2>Rekapitulace přihlášky</h2>
 
-<form class="formular" method="post">
+<form method="post">
 
     <table class="table table-bordered border-success" >
         <tbody>
