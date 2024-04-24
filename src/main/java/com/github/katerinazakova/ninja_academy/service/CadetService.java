@@ -30,6 +30,10 @@ public class CadetService {
         return cadetRepository.save(form);
     }
 
+    public void deleteCadetById(int id) {
+        cadetRepository.deleteById(id);
+    }
+
     public int calculateAge(Cadet form) {
         Period period = form.getBirthDay().until(LocalDate.now());
         return period.getYears();

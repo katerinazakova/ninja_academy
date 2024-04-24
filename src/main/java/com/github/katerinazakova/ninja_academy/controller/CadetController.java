@@ -62,4 +62,10 @@ public class CadetController {
         return "redirect:/obsazenost/" + (dateOfCadetById.getId());
     }
 
+    @PostMapping ("/cadet/{id}")
+    public String smazatKadeta (@PathVariable int id) {
+        cadetService.deleteCadetById(id);
+        return "cadet/delete";
+    }
+
 }
