@@ -55,7 +55,9 @@
         </tbody>
     </table>
 </form>
-
+<form method="get" action="/editCadet/${kadet.id}">
+    <button type="submit"  class="btn btn-success">upravit údaje</button>
+</form>
 
 </body>
 </html>

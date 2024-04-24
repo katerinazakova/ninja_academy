@@ -34,21 +34,32 @@ public class CadetController {
         Dates dateOfCadetById = datesService.findDateById(id);
         modelAndView.addObject("termin", dateOfCadetById);
 
-        int from = dateOfCadetById.getAgeFrom();
-        int to = dateOfCadetById.getAgeTo();
-
-        if (bindingResult.hasErrors()) {
+        if (cadetService.processRegistration(form, dateOfCadetById, bindingResult)) {
             return modelAndView;
         }
-
-        if (cadetService.isKidOutOfAgeCategory(form, from, to, bindingResult)
-                || cadetService.isParentEscortRequired(form, bindingResult)) {
-            return modelAndView;
-        }
-
-        form.setDate(dateOfCadetById);
         cadetService.saveNewCadet(form);
         return "cadet/recap";
+    }
+
+    @GetMapping("/editCadet/{id}")
+    public ModelAndView zobrazRegistraci(@PathVariable int id) {
+        ModelAndView modelAndView = new ModelAndView("cadet/form");
+        modelAndView.addObject("kadet", cadetService.findCadetById(id));
+        modelAndView.addObject("termin", cadetService.findCadetById(id).getDate());
+        return modelAndView;
+    }
+
+    @PostMapping("/editCadet/{id}")
+    public Object upravRegistraci(@PathVariable int id, @Valid @ModelAttribute("kadet") Cadet form, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView("cadet/form");
+        Dates dateOfCadetById = cadetService.findCadetById(id).getDate();
+        modelAndView.addObject("termin", dateOfCadetById);
+
+        if (cadetService.processRegistration(form, dateOfCadetById, bindingResult)) {
+            return modelAndView;
+        }
+        cadetService.saveCadetChanges(form);
+        return "redirect:/obsazenost/" + (dateOfCadetById.getId());
     }
 
 }
