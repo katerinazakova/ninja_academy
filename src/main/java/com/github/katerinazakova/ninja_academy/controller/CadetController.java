@@ -33,7 +33,7 @@ public class CadetController {
         ModelAndView modelAndView = new ModelAndView("cadet/form");
         Dates dateOfCadetById = datesService.findDateById(id);
         modelAndView.addObject("termin", dateOfCadetById);
-        if (cadetService.processRegistration(form, dateOfCadetById, bindingResult)) {
+        if (cadetService.processRegistrationOfCadet(form, dateOfCadetById, bindingResult)) {
             return modelAndView;
         }
         cadetService.saveNewCadet(form);
@@ -54,7 +54,7 @@ public class CadetController {
         Dates dateOfCadetById = cadetService.findCadetById(id).getDate();
         modelAndView.addObject("termin", dateOfCadetById);
 
-        if (cadetService.processRegistration(form, dateOfCadetById, bindingResult)) {
+        if (cadetService.processRegistrationOfCadet(form, dateOfCadetById, bindingResult)) {
             return modelAndView;
         }
         cadetService.saveCadetChanges(form);

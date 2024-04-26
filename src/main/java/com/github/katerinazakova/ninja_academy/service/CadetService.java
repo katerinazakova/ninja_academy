@@ -25,7 +25,7 @@ public class CadetService {
     public Cadet findCadetById(int id) {
         Optional<Cadet> cadet = cadetRepository.findById(id);
 
-        if(cadet.isPresent()){
+        if (cadet.isPresent()) {
             return cadet.get();
         } else {
             logger.warn("Kadet s id{} nebyl nalezen", id);
@@ -52,39 +52,27 @@ public class CadetService {
         return period.getYears();
     }
 
-
-    public boolean isParentEscortRequired(Cadet form, BindingResult bindingResult) {
+    public boolean isParentEscortRequired(Cadet form) {
         int age = calculateAge(form);
-        if (age < 7 && !form.isParentEscort()) {
-            bindingResult.rejectValue("parentEscort", "errorParentEscort", "Dítě do 6 let musí mít zajištěno při odchodu z kurzu doprovod.");
-            return true;
-        }
-        return false;
+        return age < 7 && !form.isParentEscort();
     }
 
-    public boolean isKidOutOfAgeCategory(Cadet form, int from, int to, BindingResult bindingResult) {
+    public boolean isCadetOutOfAgeCategory(Cadet form, Dates dateOfCadet) {
         int age = calculateAge(form);
-        if (age < from || age > to) {
-            bindingResult.rejectValue("birthDay", "errorBirthday", "Dítě je mimo věkovou kategorii.");
-            return true;
-        }
-        return false;
+        return (age < dateOfCadet.getAgeFrom() || age > dateOfCadet.getAgeTo());
     }
 
-    public boolean processRegistration(Cadet form, Dates dateOfCadetById, BindingResult bindingResult) {
-        int from = dateOfCadetById.getAgeFrom();
-        int to = dateOfCadetById.getAgeTo();
-
-        if (bindingResult.hasErrors()) {
-            return true;
+    public boolean processRegistrationOfCadet(Cadet form, Dates dateOfCadet, BindingResult bindingResult) {
+        if (bindingResult.hasErrors() || isCadetOutOfAgeCategory(form, dateOfCadet) || isParentEscortRequired(form)) {
+            if (bindingResult.hasErrors()) {
+                return true;
+            } else if (isCadetOutOfAgeCategory(form, dateOfCadet)) {
+                bindingResult.rejectValue("birthDay", "errorBirthday", "Dítě je mimo věkovou kategorii.");
+            } else {
+                bindingResult.rejectValue("parentEscort", "errorParentEscort", "Dítě do 6 let musí mít zajištěno doprovod při odchodu z kurzu.");
+            }
         }
-
-        if (isKidOutOfAgeCategory(form, from, to, bindingResult)
-                || isParentEscortRequired(form, bindingResult)) {
-            return true;
-        }
-
-        form.setDate(dateOfCadetById);
+        form.setDate(dateOfCadet);
         return false;
     }
 
